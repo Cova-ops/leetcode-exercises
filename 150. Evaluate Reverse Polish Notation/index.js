@@ -11,7 +11,6 @@ The division between two integers always truncates toward zero.
 There will not be any division by zero.
 The input represents a valid arithmetic expression in a reverse polish notation.
 The answer and all the intermediate calculations can be represented in a 32-bit integer.
- 
 
 Example 1:
 
@@ -34,7 +33,6 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 = (0 + 17) + 5
 = 17 + 5
 = 22
- 
 
 Constraints:
 
@@ -46,7 +44,7 @@ tokens[i] is either an operator: "+", "-", "*", or "/", or an integer in the ran
  * @param {string[]} tokens
  * @return {number}
  */
-var evalRPN = function (tokens) {
+const evalRPN = function (tokens) {
   const stackNum = []
 
   for (const token of tokens) {
@@ -58,17 +56,16 @@ var evalRPN = function (tokens) {
     const secondNumber = stackNum.pop()
     const firstNumber = stackNum.pop()
 
-    if (token === "+") stackNum.push(firstNumber + secondNumber)
-    if (token === "-") stackNum.push(firstNumber - secondNumber)
-    if (token === "*") stackNum.push(firstNumber * secondNumber)
-    if (token === "/") stackNum.push(Math.trunc(firstNumber / secondNumber))
-
+    if (token === '+') stackNum.push(firstNumber + secondNumber)
+    if (token === '-') stackNum.push(firstNumber - secondNumber)
+    if (token === '*') stackNum.push(firstNumber * secondNumber)
+    if (token === '/') stackNum.push(Math.trunc(firstNumber / secondNumber))
   }
 
   return stackNum[0]
-};
+}
 
-console.log(evalRPN(["2", "1", "+", "3", "*"])); // 9
-console.log(evalRPN(["4", "13", "5", "/", "+"])); // 6
-console.log(evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])); // 22
-console.log(evalRPN(["4", "-2", "/", "2", "-3", "-", "-"])); // -7
+console.log(evalRPN(['2', '1', '+', '3', '*'])) // 9
+console.log(evalRPN(['4', '13', '5', '/', '+'])) // 6
+console.log(evalRPN(['10', '6', '9', '3', '+', '-11', '*', '/', '*', '17', '+', '5', '+'])) // 22
+console.log(evalRPN(['4', '-2', '/', '2', '-3', '-', '-'])) // -7
